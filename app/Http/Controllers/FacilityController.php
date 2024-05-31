@@ -18,7 +18,8 @@ class FacilityController extends Controller
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->client = new Client([
             'base_uri' => 'https://ridb.recreation.gov/api/v1/',
             'headers' => ['apikey' => env('RIDB_API_KEY')],
@@ -56,5 +57,17 @@ class FacilityController extends Controller
         }
 
         return response()->json(['message' => 'Facilities fetched and saved successfully.']);
+    }
+
+    /**
+     * Retrieves all facilities from the database and displays them in the 'facilities.index' view.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function index()
+    {
+        $facilities = Facility::all();
+
+        return view('facilities.index', compact('facilities'));
     }
 }
