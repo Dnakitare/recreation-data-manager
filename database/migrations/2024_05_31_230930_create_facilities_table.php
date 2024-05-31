@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->string('facility_id');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('type');
+            $table->jsonb('geojson')->nullable();
             $table->timestamps();
         });
     }
